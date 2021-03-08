@@ -1,0 +1,27 @@
+<html>
+  <head>
+      <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"> -->
+      <!-- <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"> -->
+      <meta charset="UTF-8">
+      <title>Hello World!</title>
+      <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+      <base href="./">
+      <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div>
+      <p>Dossier choisi :</p>
+      <p id="Selected">No folder selected</p>
+    </div>
+    <div>
+      <p>Quality</p>
+      <input id="quality" type=text/>
+    </div>
+    <p id="CurrentAction"></p>
+    <div id="buttonDiv">
+      <button id="ChooseFolder">Choisir dossier</button>
+      <button id="makeWebp">Make webp</button>
+    </div>
+  </body>
+  <script src="./dist/renderer.js"></script>
+</html>
