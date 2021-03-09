@@ -21,14 +21,15 @@ document
     ipcRenderer.send('ChooseFolder');
   });
 
-document
-  .querySelector('#quality')
-  .addEventListener('keyup', () => {
-    ipcRenderer.send('inputChanged', document.querySelector('#quality').value);
-  });
-
-document
+  
+  document
   .querySelector('#makeWebp')
   .addEventListener('click', () => {
     ipcRenderer.send('startWebpGen');
   });
+  
+  // document
+  //   .querySelector('#quality')
+  //   .addEventListener('change', () => {
+  //     ipcRenderer.send('inputChanged', document.querySelector('#quality').value);
+  //   });

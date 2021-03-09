@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import icon from '../assets/icon.svg';
 import './App.global.css';
+import Input from './Input';
 
 const Hello = () => {
   return (
@@ -10,7 +11,8 @@ const Hello = () => {
       <p id="Selected">No folder selected</p>
     </div><div>
         <p>Quality</p>
-        <input id="quality" type='text' />
+        <Input></Input>
+        {/* <input  type='text' /> */}
     </div><p id="CurrentAction"></p>
     <div id="buttonDiv">
       <button type="button" id="ChooseFolder">Choisir dossier</button>
