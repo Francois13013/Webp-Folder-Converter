@@ -1,9 +1,40 @@
+//@ts-nocheck
+
 import React from 'react';
-import { BrowserRouter as Switch, Route, Link, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom';
 // import icon from '../assets/icon.svg';
 import './App.global.css';
 import Input from './Input';
 import AppBar from './AppBar';
+
+const { ipcRenderer } = require('electron'); 
+const { remote } = require('electron'); 
+
+
+// const sendIpc = (e, whichIpc : string) => {
+//   e.preventDefault();
+//   ipcRenderer.send(whichIpc);
+// }
+
+const openChooseFolder = (e) => {
+  e.preventDefault();
+  ipcRenderer.send("ChooseFolder");
+}
+const startWebpGen = (e) => {
+  e.preventDefault();
+  ipcRenderer.send("startWebpGen");
+}
+      
+// document.querySelector("#minBtn").addEventListener("click", function (e) {
+//   const window = remote.getCurrentWindow();
+//   window.minimize(); 
+// });
+        
+// document.querySelector("#closeBtn").addEventListener("click", function (e) {
+//   const window = remote.getCurrentWindow();
+//   window.close();
+// }); 
+      
 
 const Hello = () => {
   return (
@@ -15,8 +46,8 @@ const Hello = () => {
       <Input></Input>
     </div><p id="CurrentAction"></p>
     <div id="buttonDiv">
-      <button type="button" id="ChooseFolder">Select folder</button>
-      <button type="button" id="makeWebp">Convert now !</button>
+      <button type="button" id="ChooseFolder" onClick={openChooseFolder}>Select folder</button>
+      <button type="button" id="makeWebp" onClick={startWebpGen}>Convert now !</button>
     </div>
     <footer>
       <Link to="/Licence">Licence</Link>

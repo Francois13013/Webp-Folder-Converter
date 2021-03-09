@@ -13,30 +13,5 @@ render(<App />, document.getElementById('root'));
 // Use preload.js to selectively enable features
 // needed in the renderer process.
 
-const { ipcRenderer } = require('electron'); 
-const { remote } = require('electron'); 
-
-document
-  .querySelector('#ChooseFolder')
-  .addEventListener('click', () => {
-    ipcRenderer.send('ChooseFolder');
-  });
-
-  
-  document
-  .querySelector('#makeWebp')
-  .addEventListener('click', () => {
-    ipcRenderer.send('startWebpGen');
-  });
-      
-document.querySelector("#minBtn").addEventListener("click", function (e) {
-  const window = remote.getCurrentWindow();
-  window.minimize(); 
-});
-        
-document.querySelector("#closeBtn").addEventListener("click", function (e) {
-  const window = remote.getCurrentWindow();
-  window.close();
-}); 
       
 
