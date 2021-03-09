@@ -83,7 +83,6 @@ ipcMain.on('ChooseFolder', () => {
 
 ipcMain.on('inputChanged', (channel, inputValue) => {
   quality = inputValue;
-  console.log(inputValue);
 });
 
 ipcMain.on('startWebpGen', () => {

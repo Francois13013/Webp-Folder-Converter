@@ -71,27 +71,25 @@ ipcMain.on('inputChanged', function (channel, inputValue) {
     console.log(inputValue);
 });
 ipcMain.on('startWebpGen', function () {
-    console.log("quality");
-    // recursive(FolderLocation, [] , function (err : any, files : any) {
-    //   let rst = files.filter(function(file : any) {
-    //       if (path.extname(file).toLowerCase() === ".png") return true;
-    //       if (path.extname(file).toLowerCase() === ".jpg") return true;
-    //       if (path.extname(file).toLowerCase() === ".jpeg") return true;
-    //       return false;
-    //   });
-    //   let i = 0;
-    //   mainWindow.webContents.executeJavaScript(`
-    //     document.getElementById("NbrFichierATransformerEnWebp").innerHTML = 'Génération des webp en cours ${i}' / '${rst.length}'
-    //   `);
-    //   rst.forEach((Element : any) => {
-    //         const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q 80");
-    //         result.then((result : any) => {
-    //         ++i;
-    //         mainWindow.webContents.executeJavaScript(`
-    //           document.getElementById("CurrentAction").innerHTML = 'Génération des webp en cours ${i} / ${rst.length}'
-    //         `);
-    //       });
-    //     }); // Fin foreach
-    // }); // Fin recursive
+    recursive(FolderLocation, [], function (err, files) {
+        var rst = files.filter(function (file) {
+            if (path.extname(file).toLowerCase() === ".png")
+                return true;
+            if (path.extname(file).toLowerCase() === ".jpg")
+                return true;
+            if (path.extname(file).toLowerCase() === ".jpeg")
+                return true;
+            return false;
+        });
+        var i = 0;
+        mainWindow.webContents.executeJavaScript("\n      document.getElementById(\"NbrFichierATransformerEnWebp\").innerHTML = 'G\u00E9n\u00E9ration des webp en cours " + i + "' / '" + rst.length + "'\n    ");
+        rst.forEach(function (Element) {
+            var result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element)) + ".webp", "-q " + quality);
+            result.then(function (result) {
+                ++i;
+                mainWindow.webContents.executeJavaScript("\n            document.getElementById(\"CurrentAction\").innerHTML = 'G\u00E9n\u00E9ration des webp en cours " + i + " / " + rst.length + "'\n          ");
+            });
+        }); // Fin foreach
+    }); // Fin recursive
 });
 //# sourceMappingURL=main.js.map
