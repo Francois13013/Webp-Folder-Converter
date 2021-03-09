@@ -168,7 +168,6 @@ app.on('activate', () => {
  
  ipcMain.on('inputChanged', (channel, inputValue) => {
    quality = inputValue;
-  //  console.log(quality);
  });
  
  ipcMain.on('startWebpGen', () => {
@@ -181,16 +180,20 @@ app.on('activate', () => {
      });
      let i = 0;
      mainWindow.webContents.executeJavaScript(`
-       document.getElementById("NbrFichierATransformerEnWebp").innerHTML = 'Génération des webp en cours ${i}' / '${rst.length}'
+       document.getElementById("CurrentAction").innerHTML = 'In progress ${i}' / '${rst.length}'
      `);
      rst.forEach((Element : any) => {
            const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q " + quality);
            result.then((result : any) => {
            ++i;
            mainWindow.webContents.executeJavaScript(`
-             document.getElementById("CurrentAction").innerHTML = 'Génération des webp en cours ${i} / ${rst.length}'
+             
+             document.getElementById("CurrentAction").innerHTML = 'In progress ${i} / ${rst.length}';
            `);
          });
-       }); // Fin foreach
-   }); // Fin recursive
+       }); // End foreach
+      mainWindow.webContents.executeJavaScript(`
+       document.getElementById("CurrentAction").innerHTML = 'Ended successfully ${i} / ${rst.length}'
+     `);
+   }); // End recursive
  });
