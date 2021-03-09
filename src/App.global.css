@@ -27,6 +27,7 @@ body {
 }
  
 #title-bar-btns {
+  margin-right: 8px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -112,4 +113,18 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
+}
+
+#LicenceDiv {
+  display:flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+#LicenceDiv > a {
+  cursor:pointer;
+}
+
+#LicenceDiv > p {
+  margin:5px;
 }

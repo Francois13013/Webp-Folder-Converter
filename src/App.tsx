@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-
 import './App.global.css';
 import Input from './Input';
 import AppBar from './AppBar';
+import { shell } from 'electron';
 
 const { ipcRenderer } = require('electron'); 
 const { remote } = require('electron'); 
-
 
 // const sendIpc = (e, whichIpc : string) => {
 //   e.preventDefault();
@@ -56,13 +56,28 @@ const Hello = () => {
   );
 };
 
+const openLink = (e, str) => {
+  e.preventDefault();
+  shell.openExternal(str);
+} 
+
 const Licence = () => {
   return (
     <>
     <AppBar></AppBar>
-    <div>
-      <p>Licence :</p>
-      <p></p>
+    <div id="LicenceDiv">
+      <p>License :</p>
+      <p>This program was made for educational purpose</p>
+      <p>© MIT</p>
+
+      <a onClick={ e => openLink(e,"https://www.electronjs.org/")}>Electron</a>
+      <a onClick={ e => openLink(e,"https://reactjs.org/")}>React</a>
+      <a onClick={ e => openLink(e,"https://material-ui.com/")}>React Material UI</a>
+      <a onClick={ e => openLink(e,"https://github.com/electron-react-boilerplate/electron-react-boilerplate")}>Electron React Boilerplate</a>
+      <a onClick={ e => openLink(e,"https://www.npmjs.com/package/recursive-readdir")}>recursive-readdir</a>
+      <a onClick={ e => openLink(e,"https://www.npmjs.com/package/webp-converter")}>webp-converter</a>
+
+      <a onClick={ e => openLink(e,"https://www.siderikoudis.fr")}>siderikoudis.fr</a>
     </div>
     <Link to="/">Home</Link>
     </>
