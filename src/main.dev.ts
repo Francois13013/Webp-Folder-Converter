@@ -148,7 +148,7 @@ app.on('activate', () => {
  webp.grant_permission();
  const fs = require('fs')
  
- var FolderLocation : string = undefined;
+ var FolderLocation : string = null;
  let exclusionFolder = ["node_modules"];
  let quality = 80;
  
@@ -178,30 +178,32 @@ const disableBtn  = (bool : boolean) => {
 }
 
  ipcMain.on('startWebpGen', () => {
-   recursive(FolderLocation, [] , function (err : any, files : any) {
-     let rst = files.filter(function(file : any) {
-         if (path.extname(file).toLowerCase() === ".png") return true;
-         if (path.extname(file).toLowerCase() === ".jpg") return true;
-         if (path.extname(file).toLowerCase() === ".jpeg") return true;
-         return false;
-     });
-     let i = 0;
-     mainWindow.webContents.executeJavaScript(`
-       document.getElementById("CurrentAction").innerHTML = 'In progress ${i}' / '${rst.length}'
-     `);
-     rst.forEach((Element : any) => {
-           const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q " + quality);
-           result.then((result : any) => {
-           ++i;
-           disableBtn(true);
-           mainWindow.webContents.executeJavaScript(`
-             document.getElementById("CurrentAction").innerHTML = 'In progress ${i} / ${rst.length}';
-           `);
-         });
-       }); // End foreach
-      disableBtn(false);
+   if(FolderLocation !== null) {
+    recursive(FolderLocation, [] , function (err : any, files : any) {
+      let rst = files.filter(function(file : any) {
+          if (path.extname(file).toLowerCase() === ".png") return true;
+          if (path.extname(file).toLowerCase() === ".jpg") return true;
+          if (path.extname(file).toLowerCase() === ".jpeg") return true;
+          return false;
+      });
+      let i = 0;
       mainWindow.webContents.executeJavaScript(`
-       document.getElementById("CurrentAction").innerHTML = 'Ended successfully ${i} / ${rst.length}'
-     `);
-   }); // End recursive
+        document.getElementById("CurrentAction").innerHTML = 'In progress ${i}' / '${rst.length}'
+      `);
+      rst.forEach((Element : any) => {
+            const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q " + quality);
+            result.then((result : any) => {
+            ++i;
+            disableBtn(true);
+            mainWindow.webContents.executeJavaScript(`
+              document.getElementById("CurrentAction").innerHTML = 'In progress ${i} / ${rst.length}';
+            `);
+          });
+        }); // End foreach
+       disableBtn(false);
+       mainWindow.webContents.executeJavaScript(`
+        document.getElementById("CurrentAction").innerHTML = 'Ended successfully ${i} / ${rst.length}'
+      `);
+    }); // End recursive
+   }
  });
