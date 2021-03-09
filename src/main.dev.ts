@@ -154,7 +154,9 @@ app.on('activate', () => {
  
  ipcMain.on('ChooseFolder', () => {
    dialog.showOpenDialog({ properties: ['openDirectory'] }).then((resolve)=> {
-     if(!resolve.canceled) {
+    console.log(resolve.canceled);
+     
+    if(resolve.canceled === false) {
       FolderLocation = resolve.filePaths[0];
       let folderSelected : string = resolve.filePaths[0].replace(/\\/g, "/");    
       mainWindow.webContents.executeJavaScript(`
