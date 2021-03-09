@@ -28,3 +28,16 @@ document
     ipcRenderer.send('startWebpGen');
   });
 
+const { remote } = require('electron'); 
+      
+document.querySelector("#minBtn").addEventListener("click", function (e) {
+  const window = remote.getCurrentWindow();
+  window.minimize(); 
+});
+        
+document.querySelector("#closeBtn").addEventListener("click", function (e) {
+  const window = remote.getCurrentWindow();
+  window.close();
+}); 
+      
+

@@ -1,3 +1,41 @@
+body {
+  padding: 0px;
+  margin: 0px; 
+}
+
+#title-bar {
+  left:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top:0;
+  -webkit-app-region: drag;
+  height: 50px; 
+  width:100%;
+  background-color: rgb(11, 99, 56);
+  margin: 0px;  
+}
+ 
+#title {
+  margin-left: 18px;
+}
+ 
+#title-bar-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  -webkit-app-region: no-drag;
+  height:80%;
+}
+#title-bar-btns > button {
+  height:30px;
+  width:30px;
+  margin:3px;
+  padding:0;
+}
+
 /*
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
@@ -30,7 +68,7 @@ input {
 }
 
 #root {
-  width:70%;
+  width:85%;
 }
 
 .MuiSlider-root, .MuiSlider-root > span {
