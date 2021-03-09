@@ -27,9 +27,4 @@ document
   .addEventListener('click', () => {
     ipcRenderer.send('startWebpGen');
   });
-  
-  // document
-  //   .querySelector('#quality')
-  //   .addEventListener('change', () => {
-  //     ipcRenderer.send('inputChanged', document.querySelector('#quality').value);
-  //   });
+

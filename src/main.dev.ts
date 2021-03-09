@@ -71,13 +71,15 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    width: 600,
+    height: 400,
+    autoHideMenuBar : true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       nodeIntegration: true,
     },
     resizable : false,
+    frame:false,
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
@@ -152,16 +154,16 @@ app.on('activate', () => {
  ipcMain.on('ChooseFolder', () => {
    dialog.showOpenDialog({ properties: ['openDirectory'] }).then((resolve)=> {
      FolderLocation = resolve.filePaths[0];
-     let hamdou : string = resolve.filePaths[0].replace(/\\/g, "/");    
+     let folderSelected : string = resolve.filePaths[0].replace(/\\/g, "/");    
      mainWindow.webContents.executeJavaScript(`
-         document.getElementById("Selected").innerHTML = '${hamdou}'
+         document.getElementById("Selected").innerHTML = '${folderSelected}'
      `)
    })
  });
  
  ipcMain.on('inputChanged', (channel, inputValue) => {
    quality = inputValue;
-   console.log(quality);
+  //  console.log(quality);
  });
  
  ipcMain.on('startWebpGen', () => {

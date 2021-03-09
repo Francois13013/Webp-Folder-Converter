@@ -6,17 +6,39 @@ body {
   position: relative;
   color: white;
   height: 100vh;
+  /* background: linear-gradient(
+    200.96deg,
+    #0b1844 -29.09%,
+    #23769c 51.77%,
+    #0f0a57 129.35%
+  ); */
   background: linear-gradient(
     200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
+    #064b3f -29.09%,
+    #239c41 51.77%,
+    #087258 129.35%
   );
   font-family: sans-serif;
   overflow-y: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input {
+  color:white;
+}
+
+#root {
+  width:70%;
+}
+
+.MuiSlider-root, .MuiSlider-root > span {
+  color:white;  
+}
+
+#quality {
+  color:white;
 }
 
 button {

@@ -9,9 +9,7 @@ const Hello = () => {
     <><div>
       <p>Dossier choisi :</p>
       <p id="Selected">No folder selected</p>
-    </div><div>
-        <p>Quality</p>
-        <Input></Input>
+      <Input></Input>
         {/* <input  type='text' /> */}
     </div><p id="CurrentAction"></p>
     <div id="buttonDiv">

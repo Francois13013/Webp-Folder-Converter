@@ -45,7 +45,7 @@ export default function InputSlider() {
   return (
     <div className={classes.root}>
       <Typography id="input-slider" gutterBottom>
-        Volume
+        Quality
       </Typography>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
