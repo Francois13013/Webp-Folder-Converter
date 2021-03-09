@@ -171,15 +171,26 @@ app.on('activate', () => {
  });
  
 const disableBtn  = (bool : boolean) => {
+  console.log(bool);
+  
   mainWindow.webContents.executeJavaScript(`
     document.getElementById("ChooseFolder").disabled = ${bool};
     document.getElementById("makeWebp").disabled = ${bool};
   `);
 }
 
+const setCurrentAction = (content : string) => {  
+  console.log(content);
+  
+  mainWindow.webContents.executeJavaScript(`
+    document.getElementById("CurrentAction").innerHTML = '${content}';
+  `);
+}
+
  ipcMain.on('startWebpGen', () => {
    if(FolderLocation !== null) {
-    recursive(FolderLocation, [] , function (err : any, files : any) {
+    disableBtn(true);
+    recursive(FolderLocation, [] , function (err : any, files : any) {      
       let rst = files.filter(function(file : any) {
           if (path.extname(file).toLowerCase() === ".png") return true;
           if (path.extname(file).toLowerCase() === ".jpg") return true;
@@ -187,23 +198,26 @@ const disableBtn  = (bool : boolean) => {
           return false;
       });
       let i = 0;
-      mainWindow.webContents.executeJavaScript(`
-        document.getElementById("CurrentAction").innerHTML = 'In progress ${i}' / '${rst.length}'
-      `);
-      rst.forEach((Element : any) => {
-            const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q " + quality);
-            result.then((result : any) => {
-            ++i;
-            disableBtn(true);
-            mainWindow.webContents.executeJavaScript(`
-              document.getElementById("CurrentAction").innerHTML = 'In progress ${i} / ${rst.length}';
-            `);
-          });
-        }); // End foreach
-       disableBtn(false);
-       mainWindow.webContents.executeJavaScript(`
-        document.getElementById("CurrentAction").innerHTML = 'Ended successfully ${i} / ${rst.length}'
-      `);
+      setCurrentAction(`In progress ${i} / ${rst.length}`);
+
+      const iterationFunction = ( ObjectArray : any) => {
+        const result = webp.cwebp(ObjectArray[i], path.dirname(ObjectArray[i]) + "\\" + path.basename(ObjectArray[i], path.extname(ObjectArray[i]))  + ".webp","-q " + quality);
+        result.then((result : any) => {
+          ++i;
+          if(i !== rst.length) { // diff de 3
+            setCurrentAction(`In progress ${i} / ${rst.length}`);
+            iterationFunction(ObjectArray);
+          } else {
+            console.log("finished"); 
+            console.log("ici");
+            setCurrentAction(`Ended successfully ${i} / ${rst.length}`);
+            disableBtn(false);
+          }
+        });
+      }; iterationFunction(rst)
+      
     }); // End recursive
+   } else {
+      setCurrentAction(`Choose a folder`);
    }
  });

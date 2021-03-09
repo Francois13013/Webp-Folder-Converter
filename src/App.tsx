@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Switch, Route, Link, HashRouter } from 'react-router-dom';
 // import icon from '../assets/icon.svg';
 import './App.global.css';
 import Input from './Input';
