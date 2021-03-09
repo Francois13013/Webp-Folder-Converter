@@ -1,12 +1,11 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 
 export default function ButtonAppBar() {
   return (
               <div id="title-bar">
-                <Typography variant="h6" id="title">
+                <h3 id="title">
                   Folder Webp Converter
-                </Typography>
+                </h3>
                 <div id="title-bar-btns">
                   <button id="minBtn">-</button>
                   <button id="closeBtn">x</button>

@@ -154,11 +154,13 @@ app.on('activate', () => {
  
  ipcMain.on('ChooseFolder', () => {
    dialog.showOpenDialog({ properties: ['openDirectory'] }).then((resolve)=> {
-     FolderLocation = resolve.filePaths[0];
-     let folderSelected : string = resolve.filePaths[0].replace(/\\/g, "/");    
-     mainWindow.webContents.executeJavaScript(`
-         document.getElementById("Selected").innerHTML = '${folderSelected}'
-     `)
+     if(!resolve.canceled) {
+      FolderLocation = resolve.filePaths[0];
+      let folderSelected : string = resolve.filePaths[0].replace(/\\/g, "/");    
+      mainWindow.webContents.executeJavaScript(`
+          document.getElementById("Selected").innerHTML = '${folderSelected}'
+      `)
+     }
    })
  });
  

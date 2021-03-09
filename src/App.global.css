@@ -3,6 +3,10 @@ body {
   margin: 0px; 
 }
 
+* {
+  user-select: none;
+}
+
 #title-bar {
   left:0;
   display: flex;

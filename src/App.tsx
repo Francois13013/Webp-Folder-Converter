@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom';
 // import icon from '../assets/icon.svg';
 import './App.global.css';
 import Input from './Input';
@@ -40,15 +40,11 @@ const Licence = () => {
 
 export default function App() {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
         <Route path="/Licence" component={Licence} />
         <Route path="/" component={Hello} />
       </Switch>
-    </Router>
-    // <Router>
-
-    //   </Switch>
-    // </Router>
+    </HashRouter>
   );
 }

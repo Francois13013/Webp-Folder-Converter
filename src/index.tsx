@@ -14,6 +14,7 @@ render(<App />, document.getElementById('root'));
 // needed in the renderer process.
 
 const { ipcRenderer } = require('electron'); 
+const { remote } = require('electron'); 
 
 document
   .querySelector('#ChooseFolder')
@@ -27,8 +28,6 @@ document
   .addEventListener('click', () => {
     ipcRenderer.send('startWebpGen');
   });
-
-const { remote } = require('electron'); 
       
 document.querySelector("#minBtn").addEventListener("click", function (e) {
   const window = remote.getCurrentWindow();
