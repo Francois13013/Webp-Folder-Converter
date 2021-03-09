@@ -170,6 +170,13 @@ app.on('activate', () => {
    quality = inputValue;
  });
  
+const disableBtn  = (bool : boolean) => {
+  mainWindow.webContents.executeJavaScript(`
+    document.getElementById("ChooseFolder").disabled = ${bool};
+    document.getElementById("makeWebp").disabled = ${bool};
+  `);
+}
+
  ipcMain.on('startWebpGen', () => {
    recursive(FolderLocation, [] , function (err : any, files : any) {
      let rst = files.filter(function(file : any) {
@@ -186,12 +193,13 @@ app.on('activate', () => {
            const result = webp.cwebp(Element, path.dirname(Element) + "\\" + path.basename(Element, path.extname(Element))  + ".webp","-q " + quality);
            result.then((result : any) => {
            ++i;
+           disableBtn(true);
            mainWindow.webContents.executeJavaScript(`
-             
              document.getElementById("CurrentAction").innerHTML = 'In progress ${i} / ${rst.length}';
            `);
          });
        }); // End foreach
+      disableBtn(false);
       mainWindow.webContents.executeJavaScript(`
        document.getElementById("CurrentAction").innerHTML = 'Ended successfully ${i} / ${rst.length}'
      `);
