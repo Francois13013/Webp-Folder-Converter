@@ -14,6 +14,7 @@ I made this personnal project to learn and use for a first time electron and rea
 This is for educational purpose only.
 
 ###How start the project
+
 #####Prerequisite
 
 * Node Js
@@ -24,8 +25,10 @@ cd "the current repo"
 yarn install
 yarn start
 ```
+
 ###License
 © MIT
+
 [Siderikoudis](https://www.siderikoudis.fr/)
 
 [Electron](https://www.electronjs.org/)
