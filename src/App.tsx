@@ -72,8 +72,6 @@ export default function App() {
   return (
     <HashRouter>
       <Switch>
-        {/* <Route path="/Licence" component={Licence} />
-        <Route path="/" component={Hello} /> */}
         <Route path="/Licence" component={Licence} />
         <Route path="/" component={Hello} />
       </Switch>
