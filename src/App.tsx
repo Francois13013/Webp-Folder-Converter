@@ -8,13 +8,7 @@ import Input from './Input';
 import AppBar from './AppBar';
 import { shell } from 'electron';
 
-const { ipcRenderer } = require('electron'); 
-const { remote } = require('electron'); 
-
-// const sendIpc = (e, whichIpc : string) => {
-//   e.preventDefault();
-//   ipcRenderer.send(whichIpc);
-// }
+const { ipcRenderer, remote } = require('electron'); 
 
 const openChooseFolder = (e) => {
   e.preventDefault();
@@ -24,16 +18,6 @@ const startWebpGen = (e) => {
   e.preventDefault();
   ipcRenderer.send("startWebpGen");
 }
-      
-// document.querySelector("#minBtn").addEventListener("click", function (e) {
-//   const window = remote.getCurrentWindow();
-//   window.minimize(); 
-// });
-        
-// document.querySelector("#closeBtn").addEventListener("click", function (e) {
-//   const window = remote.getCurrentWindow();
-//   window.close();
-// }); 
       
 
 const Hello = () => {
@@ -88,6 +72,8 @@ export default function App() {
   return (
     <HashRouter>
       <Switch>
+        {/* <Route path="/Licence" component={Licence} />
+        <Route path="/" component={Hello} /> */}
         <Route path="/Licence" component={Licence} />
         <Route path="/" component={Hello} />
       </Switch>

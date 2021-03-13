@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 export default function InputSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | string | Array<number | string>>(30);
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(80);
 
   const handleAllChange = (number : number | number[]) => {    
     ipcRenderer.send('inputChanged', number);
