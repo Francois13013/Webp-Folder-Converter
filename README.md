@@ -8,14 +8,14 @@
 
 ![](https://img.shields.io/github/stars/FrancoisSiderikoudis/Webp-Folder-Converter.svg) ![](https://img.shields.io/github/forks/FrancoisSiderikoudis/Webp-Folder-Converter.svg) ![](https://img.shields.io/github/tag/FrancoisSiderikoudis/Webp-Folder-Converter.svg) ![](https://img.shields.io/github/release/FrancoisSiderikoudis/Webp-Folder-Converter.svg) ![](https://img.shields.io/github/issues/FrancoisSiderikoudis/Webp-Folder-Converter.svg)
 
-###Why this project
+### Why this project
 
 I made this personnal project to learn and use for a first time electron and react.
 This is for educational purpose only.
 
-###How start the project
+### How start the project
 
-#####Prerequisite
+##### Prerequisite
 
 * Node Js
 * Yarn
@@ -26,7 +26,7 @@ yarn install
 yarn start
 ```
 
-###License
+### License
 © MIT
 
 [Siderikoudis](https://www.siderikoudis.fr/)
