@@ -44,7 +44,7 @@ main.js
 main.js.map
 
 # VSCODE
-.vscode/
+.vscode
 
 .idea
 npm-debug.log.*
